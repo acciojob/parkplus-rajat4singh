@@ -10,14 +10,21 @@ public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-    private String address ;
+    private String address;
 
     @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
-    List<Spot> spotList ;
+    List<Spot> spotList=new ArrayList<>();
 
+    public ParkingLot() {
+    }
 
+    public ParkingLot(int id, String name, String address, List<Spot> spotList) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.spotList = spotList;
+    }
 
     public int getId() {
         return id;
@@ -35,6 +42,13 @@ public class ParkingLot {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public List<Spot> getSpotList() {
         return spotList;
@@ -42,13 +56,5 @@ public class ParkingLot {
 
     public void setSpotList(List<Spot> spotList) {
         this.spotList = spotList;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }
